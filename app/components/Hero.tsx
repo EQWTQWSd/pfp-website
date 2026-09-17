@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import GlitchName from "./GlitchName";
@@ -159,7 +159,7 @@ export default function Hero({ visible }: HeroProps) {
         <video
           ref={videoRef}
           className={styles.video}
-          src="/videos/background.mp4"
+          src="/videos/background_small.mp4"
           autoPlay
           muted
           loop
