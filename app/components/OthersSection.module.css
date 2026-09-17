@@ -1,0 +1,256 @@
+﻿.section {
+  position: relative;
+  z-index: 1;
+  padding: clamp(80px, 11vh, 140px) clamp(24px, 4vw, 60px) clamp(80px, 12vh, 140px);
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.labelRow.inView {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.labelRule {
+  display: block;
+  height: 1px;
+  width: 28px;
+  background: rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.labelText {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s 0.1s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.7s 0.1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content.contentInView,
+.gameRow.contentInView {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gameRow {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.8s 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.panel {
+  flex: 1;
+  min-width: 0;
+}
+
+.panel:first-child {
+  flex: 1.2;
+}
+
+.panelHeader {
+  margin-bottom: 8px;
+}
+
+.panelTitle {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.panelSub {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+.messageList {
+  min-height: 80px;
+}
+
+.emptyState {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.2);
+  padding: 12px 0;
+}
+
+.leaveBtn {
+  margin-top: 20px;
+  padding: 9px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-size: 12px;
+  font-family: inherit;
+  color: rgba(255, 255, 255, 0.22);
+  cursor: not-allowed;
+  letter-spacing: 0.02em;
+  transition: none;
+}
+
+.buttonGrid {
+  display: grid;
+  grid-template-columns: repeat(var(--btn-cols, 2), var(--btn-w, 88px));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.btnWrap {
+  position: relative;
+  display: block;
+  line-height: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  opacity: 0.85;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  border: none;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btnWrap:hover {
+  opacity: 1;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.22);
+}
+
+.btnNoLink {
+  cursor: default;
+}
+
+.btnNoLink:hover {
+  box-shadow: none;
+}
+
+.btnHasLink {
+  cursor: pointer;
+  opacity: 0.95;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(177, 141, 208, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  animation: copyBtnPulse 3s ease-in-out infinite alternate;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.btnHasLink:hover {
+  opacity: 1;
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 35px rgba(177, 141, 208, 0.65);
+  border-color: rgba(255, 255, 255, 0.95);
+}
+
+.btnHasLink .btnOverlay {
+  background: rgba(20, 11, 36, 0.8);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btnCopied.btnHasLink {
+  box-shadow: 0 0 24px rgba(35, 165, 90, 0.9), 0 0 40px rgba(35, 165, 90, 0.6) !important;
+  border-color: #23a55a !important;
+  transform: scale(1.08) !important;
+}
+
+.btnCopied.btnHasLink .btnOverlay {
+  background: rgba(15, 45, 25, 0.92) !important;
+  color: #23a55a !important;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 8px #23a55a;
+}
+
+@keyframes copyBtnPulse {
+  0% {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.25), 0 0 16px rgba(177, 141, 208, 0.22);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.6), 0 0 28px rgba(177, 141, 208, 0.55);
+    border-color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+.btnWrap:hover .btnOverlay,
+.btnCopied .btnOverlay {
+  opacity: 1;
+}
+
+.btnCopied .btnOverlay {
+  background: rgba(0, 0, 0, 0.72);
+  letter-spacing: 0.12em;
+}
+
+.btnOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--btn-overlay-fs, 9px);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+.webBtn {
+  display: block;
+  width: var(--btn-w, 88px);
+  height: var(--btn-h, 31px);
+  object-fit: cover;
+  image-rendering: crisp-edges;
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    gap: 44px;
+  }
+
+  .panel:first-child {
+    flex: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+  .buttonGrid {
+    grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+    gap: 10px;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,24 @@
+﻿.name {
+  font-family: var(--font-spanish), serif;
+  font-weight: 400;
+  font-size: clamp(44px, 6.4vw, 96px);
+  line-height: 1;
+  letter-spacing: var(--cosmin-letter-spacing, -0.01em);
+  display: inline-flex;
+  color: #fff;
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.45);
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
+}
+
+.name span {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}

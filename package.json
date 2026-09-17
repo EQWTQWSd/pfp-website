@@ -1,0 +1,27 @@
+{
+  "name": "cosmin",
+  "version": "0.1.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "assets": "node scripts/setup-assets.js",
+    "postinstall": "node scripts/setup-assets.js",
+    "predev": "node scripts/setup-assets.js",
+    "prebuild": "node scripts/setup-assets.js"
+  },
+  "dependencies": {
+    "next": "14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sharp": "^0.35.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.2.73",
+    "@types/react-dom": "^18.2.22",
+    "typescript": "^5.4.3"
+  }
+}

@@ -1,0 +1,126 @@
+﻿.card {
+  position: relative;
+  will-change: transform;
+  transform-style: preserve-3d;
+
+  
+  opacity: 0;
+  transform: perspective(1000px) translateY(28px);
+  transition:
+    opacity 0.75s cubic-bezier(0.23, 1, 0.32, 1) 0.1s,
+    transform 0.75s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
+}
+
+.card.inView {
+  opacity: 1;
+  transform: perspective(1000px) translateY(0px);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 28px;
+}
+
+.labelRule {
+  display: block;
+  height: 1px;
+  background: rgba(255, 255, 255, 1);
+  flex-shrink: 0;
+}
+
+.labelText {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 1);
+  white-space: nowrap;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.statusText {
+  font-size: 12px;
+  color: rgba(235, 222, 248, 0.7);
+  letter-spacing: 0.04em;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 18px auto auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 0;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: color 0.25s ease;
+  min-width: 260px;
+}
+
+.row:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 1);
+  transition: color 0.25s ease;
+}
+
+.row:hover .icon {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.platform {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  width: 76px;
+  flex-shrink: 0;
+}
+
+.sep {
+  font-size: 13px;
+  opacity: 0.25;
+}
+
+.username {
+  font-size: 13px;
+  color: rgba(235, 222, 248, 0.75);
+  letter-spacing: 0.04em;
+  transition: color 0.25s ease;
+}
+
+.row:hover .username {
+  color: rgba(255, 255, 255, 0.7);
+}

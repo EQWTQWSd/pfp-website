@@ -1,0 +1,221 @@
+﻿
+.introScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background: #000;
+  overflow: hidden;
+  cursor: default;
+  user-select: none;
+  opacity: 1;
+  transition: opacity 0.9s var(--ease);
+}
+
+.introScreenInteractive {
+  cursor: pointer;
+}
+
+.introFadingOut {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.introGated {
+  opacity: 0;
+  pointer-events: none;
+  transition: none;
+}
+
+.yorhaBg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/yorha_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity var(--intro-transition-ms, 1100ms) var(--ease);
+}
+
+.nierBg {
+  position: absolute;
+  inset: -20px;
+  background-image: url('/images/nier_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(10px);
+  transform: scale(1.03);
+  opacity: 0;
+  transition: opacity var(--intro-transition-ms, 1100ms) var(--ease);
+  pointer-events: none;
+}
+
+.introTransitioned .nierBg {
+  opacity: 1;
+}
+
+.introTransitioned .yorhaBg {
+  opacity: 0;
+}
+
+.introSkip .nierBg {
+  opacity: 1;
+  transition: none;
+}
+
+.introSkip .continueInner {
+  opacity: 1;
+  transition: none;
+  animation: breathe 3.6s ease-in-out 0.4s infinite;
+}
+
+.bootConsole {
+  position: absolute;
+  top: 64px;
+  left: 56px;
+  
+  font-family: var(--font-rajdhani), sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(232, 226, 214, 0.96);
+  
+  text-shadow:
+    -1px 0 0 rgba(255, 30, 70, 0.45),
+    1px 0 0 rgba(0, 200, 255, 0.4),
+    1px 1px 0 rgba(0, 0, 0, 0.7),
+    2px 2px 0 rgba(0, 0, 0, 0.55),
+    3px 3px 0 rgba(0, 0, 0, 0.4),
+    4px 4px 0 rgba(0, 0, 0, 0.25),
+    0 0 14px rgba(255, 255, 255, 0.05);
+  max-width: min(640px, 86vw);
+  max-height: calc(100vh - 96px);
+  overflow: hidden;
+  pointer-events: none;
+  letter-spacing: 0.01em;
+  z-index: 4;
+  transition: opacity var(--intro-transition-ms, 1100ms) var(--ease),
+              filter var(--intro-transition-ms, 1100ms) var(--ease);
+}
+
+@media (max-width: 640px) {
+  .bootConsole {
+    top: 36px;
+    left: 24px;
+    font-size: 12px;
+  }
+}
+
+.bootLine {
+  white-space: pre-wrap;
+  animation: bootLineIn 0.18s ease-out;
+}
+
+@keyframes bootLineIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.bootCursor {
+  margin-top: 6px;
+  font-family: var(--font-rajdhani), sans-serif;
+  font-size: 14px;
+  color: rgba(232, 226, 214, 0.95);
+  text-shadow:
+    -1px 0 0 rgba(255, 30, 70, 0.45),
+    1px 0 0 rgba(0, 200, 255, 0.4),
+    1px 1px 0 rgba(0, 0, 0, 0.7),
+    2px 2px 0 rgba(0, 0, 0, 0.55);
+}
+
+.bootCursor span {
+  display: inline-block;
+  animation: blink 1.05s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.green {
+  color: #6dd86d;
+  text-shadow:
+    -1px 0 0 rgba(255, 30, 70, 0.4),
+    1px 0 0 rgba(0, 220, 200, 0.4),
+    1px 1px 0 rgba(0, 0, 0, 0.7),
+    2px 2px 0 rgba(0, 0, 0, 0.55),
+    3px 3px 0 rgba(0, 0, 0, 0.4),
+    4px 4px 0 rgba(0, 0, 0, 0.25),
+    0 0 10px rgba(80, 220, 100, 0.2);
+}
+
+.introTransitioned .bootConsole {
+  opacity: 0;
+  filter: blur(0.5px);
+  pointer-events: none;
+}
+
+.continueInner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  pointer-events: none;
+  padding: 0 24px;
+  opacity: 0;
+  transition: opacity 1.1s var(--ease) 0.35s;
+  z-index: 6;
+}
+
+.introTransitioned .continueInner {
+  opacity: 1;
+  animation: breathe 3.6s ease-in-out 1.6s infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.45; }
+}
+
+.signatureImg {
+  height: clamp(100px, 12vh, 180px);
+  width: auto;
+  max-width: min(560px, 90vw);
+  object-fit: contain;
+  user-select: none;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 28px rgba(177, 141, 208, 0.35));
+  animation: signaturePulse 4s ease-in-out infinite alternate;
+  transition: filter 0.35s ease, transform 0.35s ease;
+}
+
+.introScreenInteractive:hover .signatureImg {
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 40px rgba(177, 141, 208, 0.75)) brightness(1.15);
+  transform: scale(1.03);
+}
+
+@keyframes signaturePulse {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.35)) drop-shadow(0 0 20px rgba(177, 141, 208, 0.3));
+  }
+  100% {
+    filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 34px rgba(177, 141, 208, 0.6));
+  }
+}
+
+@media (max-width: 640px) {
+  .signatureImg {
+    height: clamp(72px, 9vh, 120px);
+  }
+}
+
+.continueText {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.55);
+}

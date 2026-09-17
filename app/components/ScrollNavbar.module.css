@@ -1,0 +1,104 @@
+﻿
+.leftOverlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 18px clamp(24px, 4vw, 60px);
+  
+  pointer-events: none;
+}
+
+.in {
+  animation: navEnter 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  pointer-events: all;
+}
+
+.out {
+  animation: navLeave 0.4s cubic-bezier(0.6, 0.05, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes navEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+@keyframes navLeave {
+  from {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.92);
+  }
+}
+
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.sig {
+  height: clamp(100px, 11vh, 160px);
+  max-width: min(520px, 92vw);
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.35)) drop-shadow(0 0 24px rgba(177, 141, 208, 0.3));
+  animation: sigPulse 4s ease-in-out infinite alternate;
+  transition: filter 0.35s ease, transform 0.35s ease;
+}
+
+.btn:hover .sig {
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.85)) drop-shadow(0 0 36px rgba(177, 141, 208, 0.65)) brightness(1.15);
+}
+
+@keyframes sigPulse {
+  0% {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 18px rgba(177, 141, 208, 0.25));
+  }
+  100% {
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.55)) drop-shadow(0 0 30px rgba(177, 141, 208, 0.5));
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    justify-content: center;
+  }
+  .sig {
+    height: clamp(72px, 8vh, 110px);
+  }
+}
